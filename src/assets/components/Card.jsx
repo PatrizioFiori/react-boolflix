@@ -1,21 +1,22 @@
 import { useMainContext } from "../contexts/MainContext";
 
 const Card = ({ item }) => {
-    let bandiera = "";
-
-    if (item.original_language === "en") {
-        bandiera = "GB";
-    } else if (item.original_language === "ja") {
-        bandiera = "JP";
-    } else {
-        bandiera = item.original_language.toUpperCase();
-    }
+    const bandiera =
+        item.original_language === "en"
+            ? "GB"
+            : item.original_language === "ja"
+                ? "JP"
+                : item.original_language.toUpperCase();
     // Non posso controllare tutta l'api per fixxare maiuscole e minuscole XD
+
+    const fullStars = Math.max(1, Math.min(5, Math.round(item.vote_average / 2)));
 
     return (
         <div className="card card-custom">
             <img
-                src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                src={item.poster_path
+                    ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
+                    : "https://placehold.co/500x750"}
                 alt={item.title}
                 className="card-img-top card-custom-img"
             />
@@ -24,7 +25,15 @@ const Card = ({ item }) => {
                 <h5>{item.title}</h5>
                 <h6 className="text-dark-emphasis">{item.original_title}</h6>
                 <img src={`https://flagsapi.com/${bandiera}/flat/64.png`} alt={item.original_language} />
-                <p>{item.vote_average}</p>
+                <p>{fullStars} stelle su 5</p>
+                <div>
+                    {[...Array(fullStars)].map((_, i) => (
+                        <i key={i} className="fa-solid fa-star text-warning"></i>
+                    ))}
+                    {[...Array(5 - fullStars)].map((_, i) => (
+                        <i key={i + fullStars} className="fa-regular fa-star text-secondary"></i>
+                    ))}
+                </div>
                 <p>{item.overview}</p>
             </div>
         </div>
