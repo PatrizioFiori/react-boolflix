@@ -13,37 +13,6 @@ const MainProvider = ({ children }) => {
     const [listaFilm, setListaFilm] = useState([]);
     const [listaSerie, setListaSerie] = useState([]);
 
-    const bandierina = (lingua) => {
-        switch (lingua) {
-            case 'en':
-                return 'https://flagsapi.com/GB/shiny/64.png';
-            case 'it':
-                return 'https://flagsapi.com/IT/shiny/64.png';
-            case 'es':
-                return 'https://flagsapi.com/ES/shiny/64.png';
-            case 'fr':
-                return 'https://flagsapi.com/FR/shiny/64.png';
-            case 'de':
-                return 'https://flagsapi.com/DE/shiny/64.png';
-            case 'pt':
-                return 'https://flagsapi.com/PT/shiny/64.png';
-            case 'ru':
-                return 'https://flagsapi.com/RU/shiny/64.png';
-            case 'ja':
-                return 'https://flagsapi.com/JP/shiny/64.png';
-            case 'zh':
-                return 'https://flagsapi.com/CN/shiny/64.png';
-            case 'ko':
-                return 'https://flagsapi.com/KR/shiny/64.png';
-            case 'hi':
-                return 'https://flagsapi.com/IN/shiny/64.png';
-            case 'ar':
-                return 'https://flagsapi.com/SA/shiny/64.png';
-            default:
-                return "";
-        }
-    };
-
     const fetchData = (ricerca) => {
         if (!ricerca) {
             setListaFilm([]);
@@ -74,7 +43,6 @@ const MainProvider = ({ children }) => {
         listaSerie,
         setListaSerie,
         fetchData,
-        bandierina,
     };
 
     return (
