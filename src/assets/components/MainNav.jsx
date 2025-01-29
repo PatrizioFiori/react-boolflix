@@ -1,37 +1,32 @@
-import React from 'react';
-import { useMainContext } from '../contexts/MainContext';
+import { useMainContext } from "../contexts/MainContext";
 
 const MainNav = () => {
-
     const {
-        ricercaFilm,
-        fetchData,
         titoloRicercato,
+        setTitoloRicercato,
+        fetchData
     } = useMainContext();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        fetchData();
+    const handleChange = (e) => {
+        fetchData(e.target.value);
+        setTitoloRicercato(e.target.value);
     };
 
     return (
         <div className="container-fluid p-0">
             <nav className="navbar navbar-dark bg-dark justify-content-between px-5 w-100">
-                <a className="navbar-brand">Navbar</a>
+                <span className="navbar-brand">Navbar</span>
 
-                <form className="form-inline" onSubmit={handleSubmit}>
+                <div className="form-inline">
                     <input
                         className="form-control mr-sm-2"
                         type="search"
-                        placeholder="Cerca film..."
+                        placeholder="Cerca...."
                         aria-label="Search"
                         value={titoloRicercato}
-                        onChange={ricercaFilm}
+                        onChange={handleChange}
                     />
-                    <button type="submit" className="btn btn-outline-info ml-2">
-                        Cerca
-                    </button>
-                </form>
+                </div>
             </nav>
         </div>
     );

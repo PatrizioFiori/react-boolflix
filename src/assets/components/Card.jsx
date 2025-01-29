@@ -1,21 +1,21 @@
 import { useMainContext } from "../contexts/MainContext"
 
-const Card = ({ film }) => {
+const Card = ({ item }) => {
     return (
 
         <div className="card card-custom">
             <img
-                src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
-                alt={film.title}
+                src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                alt={item.title}
                 className="card-img-top card-custom-img"
             />
 
             <div className="card-custom-info text-center">
-                <h5>{film.title}</h5>
-                <h6 className="text-dark-emphasis">{film.original_title}</h6>
-                <p>{film.original_language}</p>
-                <p>{film.vote_average}</p>
-                <p>{film.overview}</p>
+                <h5>{item.title}</h5>
+                <h6 className="text-dark-emphasis">{item.original_title}</h6>
+                <p>{item.original_language}</p>
+                <p>{item.vote_average}</p>
+                <p>{item.overview}</p>
             </div>
         </div>
     );
