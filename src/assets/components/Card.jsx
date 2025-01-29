@@ -6,8 +6,10 @@ const Card = ({ item }) => {
             ? "GB"
             : item.original_language === "ja"
                 ? "JP"
-                : item.original_language.toUpperCase();
-    // Non posso controllare tutta l'api per fixxare maiuscole e minuscole XD
+                : item.original_language === "ko"
+                    ? "KR"
+                    : item.original_language.toUpperCase();
+    // Non posso controllare tutta l'api per fixxare maiuscole e minuscole sta bene cosi ! =D
 
     const fullStars = Math.max(1, Math.min(5, Math.round(item.vote_average / 2)));
 
@@ -27,6 +29,7 @@ const Card = ({ item }) => {
                 <img src={`https://flagsapi.com/${bandiera}/flat/64.png`} alt={item.original_language} />
                 <p>{fullStars} stelle su 5</p>
                 <div>
+                    {/* da approfondire e vedere se si può sistemare per renderlo più scorrevole */}
                     {[...Array(fullStars)].map((_, i) => (
                         <i key={i} className="fa-solid fa-star text-warning"></i>
                     ))}
@@ -34,7 +37,7 @@ const Card = ({ item }) => {
                         <i key={i + fullStars} className="fa-regular fa-star text-secondary"></i>
                     ))}
                 </div>
-                <p>{item.overview}</p>
+                <p className="pt-3">{item.overview}</p>
             </div>
         </div>
     );
